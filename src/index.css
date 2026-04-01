@@ -1,11 +1,144 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  @apply bg-gray-100 text-gray-900;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.18), transparent 30%),
+    radial-gradient(
+      circle at top right,
+      rgba(59, 130, 246, 0.12),
+      transparent 28%
+    ),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 55%, #e8eff8 100%);
+  color: #0f172a;
+  font-family: 'Aptos', 'Segoe UI', sans-serif;
 }
 
 .dark body {
-  @apply bg-gray-900 text-white;
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.14), transparent 28%),
+    radial-gradient(
+      circle at top right,
+      rgba(59, 130, 246, 0.08),
+      transparent 24%
+    ),
+    linear-gradient(180deg, #020617 0%, #08111f 50%, #020617 100%);
+  color: #e2e8f0;
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+body::before,
+body::after {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+  opacity: 0.28;
+}
+
+body::after {
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.7), transparent 20%),
+    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.35), transparent 18%);
+  opacity: 0.8;
+}
+
+.dark body::after {
+  background:
+    radial-gradient(circle at 20% 15%, rgba(56, 189, 248, 0.12), transparent 18%),
+    radial-gradient(circle at 80% 8%, rgba(59, 130, 246, 0.1), transparent 14%);
+}
+
+#root {
+  isolation: isolate;
+  min-height: 100vh;
+  position: relative;
+}
+
+::selection {
+  background: rgba(14, 165, 233, 0.22);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.42);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.58);
+  background-clip: padding-box;
+}
+
+@layer base {
+  * {
+    @apply border-slate-200/70 dark:border-white/10;
+  }
+
+  button,
+  input,
+  select {
+    @apply transition duration-200;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-[30px] border border-white/70 bg-white/75 shadow-[0_24px_80px_-32px_rgba(15,23,42,0.35)] backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/45 dark:shadow-[0_24px_80px_-28px_rgba(2,6,23,0.85)];
+  }
+
+  .glass-subpanel {
+    @apply rounded-[24px] border border-slate-200/70 bg-white/80 backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04];
+  }
+
+  .eyebrow {
+    @apply text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-sky-700 dark:text-sky-300;
+  }
+
+  .section-title {
+    @apply text-lg font-semibold tracking-tight text-slate-950 dark:text-white;
+  }
+
+  .section-copy {
+    @apply text-sm leading-6 text-slate-500 dark:text-slate-400;
+  }
+
+  .control-input {
+    @apply h-11 w-full rounded-2xl border border-slate-200/80 bg-white/80 px-4 text-sm text-slate-700 shadow-sm outline-none placeholder:text-slate-400 focus:border-sky-400 focus:bg-white focus:ring-4 focus:ring-sky-100 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-sky-400 dark:focus:bg-white/[0.08] dark:focus:ring-sky-500/10;
+  }
+
+  .pill-badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/70 px-3 py-1.5 text-xs font-medium text-slate-600 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-300;
+  }
+}
