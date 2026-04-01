@@ -1,73 +1,180 @@
-# React + TypeScript + Vite
+# 💰 Finance Dashboard UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean and interactive **Finance Dashboard** built using modern frontend technologies.
+This project demonstrates UI design, state management, data visualization, and user experience thinking.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Live Features
 
-## React Compiler
+- 📊 Dashboard overview with financial summary
+- 📈 Balance trend visualization (line chart)
+- 🥧 Spending breakdown (pie chart)
+- 📋 Transactions table with search, filter & sorting
+- 🔐 Role-based UI (Viewer / Admin)
+- ➕ Add transaction (Admin only)
+- 💡 Insights with monthly comparison & observations
+- 🌙 Dark mode support
+- 💾 LocalStorage persistence
+- 🔌 Mock API integration
+- 📱 Fully responsive design
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React (Vite + TypeScript)**
+- **Tailwind CSS**
+- **Redux Toolkit**
+- **Motion**
+- **Recharts**
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧠 Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+│
+├── app/                # Redux store & hooks
+├── features/           # Feature-based modules
+│   ├── dashboard/
+│   ├── transactions/
+│   ├── insights/
+│   ├── role/
+│
+├── components/         # Shared UI components
+├── data/               # Mock data
+├── utils/              # Helpers & mock API
+├── pages/              # Main pages
+│
+├── App.tsx
+├── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📊 Key Functionalities
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Dashboard Overview
+
+- Displays:
+  - Total Balance
+  - Total Income
+  - Total Expenses
+
+- Includes:
+  - Balance trend chart (time-based)
+  - Spending breakdown chart (category-based)
+
+---
+
+### 2. Transactions Management
+
+- View all transactions with:
+  - Date
+  - Amount
+  - Category
+  - Type (Income / Expense)
+
+- Features:
+  - 🔍 Search by category
+  - 🔽 Filter (All / Income / Expense)
+  - ↕ Sort (Date / Amount)
+
+- Handles empty states gracefully
+
+---
+
+### 3. Role-Based UI
+
+- **Viewer**
+  - Can only view data
+
+- **Admin**
+  - Can add new transactions
+
+- Role switch implemented via dropdown for demonstration
+
+---
+
+### 4. Insights Section
+
+- 🥇 Highest spending category
+- 📅 Monthly comparison (current vs previous month)
+- 💡 Smart observations based on data trends
+- 📊 Net savings calculation
+
+---
+
+### 5. State Management
+
+Handled using **Redux Toolkit**:
+
+- Transactions state
+- Filters (search, sort, type)
+- Role state
+
+---
+
+### 6. LocalStorage Persistence
+
+- Saves transactions & role
+- Restores state on reload
+
+---
+
+### 7. Mock API Layer
+
+- Simulates backend using async function
+- Adds realistic loading delay
+
+---
+
+### 8. Dark Mode
+
+- Implemented using Tailwind `dark` class strategy
+- Consistent UI across all components
+
+---
+
+### 9. Empty States
+
+- Graceful fallback UI when no data is available
+- Improves UX and completeness
+
+---
+
+## 📦 Installation & Setup
+
+```bash
+# Clone repository
+git clone <your-repo-url>
+
+# Navigate to project
+cd finance-dashboard
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
 ```
+
+---
+
+## 🧠 Approach & Thought Process
+
+- Used **feature-based architecture** for scalability
+- Focused on **clean UI + usability**
+- Derived insights from normalized transaction data
+- Avoided overengineering while maintaining clarity
+- Added enhancements (dark mode, persistence, mock API) to simulate real-world applications
+
+---
+
+## 👤 Author
+
+**Suvigya**
+
+---

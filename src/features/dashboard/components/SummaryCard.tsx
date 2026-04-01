@@ -38,7 +38,7 @@ const SummaryCards = () => {
       {cards.map((card) => (
         <div
           key={card.title}
-          className={`p-5 rounded-2xl text-white shadow-md ${card.color}`}
+          className={`p-5 rounded-2xl text-white shadow-md  ${card.color}`}
         >
           <h2 className="text-sm opacity-80">{card.title}</h2>
           <p className="text-2xl font-semibold mt-2">

@@ -23,9 +23,17 @@ const ExpensePieChart = () => {
       return acc
     }, [])
 
+  if (expenseData.length === 0) {
+    return (
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow">
+        <p className="text-gray-500 text-center">No expense data available</p>
+      </div>
+    )
+  }
+
   return (
     <motion.div
-      className="bg-white p-4 rounded-2xl shadow"
+      className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
     >

@@ -38,7 +38,7 @@ const AddTransactionForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-4 rounded-2xl shadow flex flex-col md:flex-row gap-3"
+      className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow flex flex-col md:flex-row gap-3"
     >
       <input
         type="number"

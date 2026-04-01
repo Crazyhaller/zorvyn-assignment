@@ -29,9 +29,17 @@ const BalanceChart = () => {
     }
   })
 
+  if (data.length === 0) {
+    return (
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow">
+        <p className="text-gray-500 text-center">No data available for chart</p>
+      </div>
+    )
+  }
+
   return (
     <motion.div
-      className="bg-white p-4 rounded-2xl shadow w-full"
+      className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow w-full"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
     >

@@ -28,14 +28,19 @@ const TransactionsTable = () => {
 
   return (
     <motion.div
-      className="bg-white p-4 rounded-2xl shadow"
+      className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
       <h2 className="font-semibold mb-4">Transactions</h2>
 
       {filtered.length === 0 ? (
-        <p className="text-gray-500">No transactions found</p>
+        <div className="text-center py-10 text-gray-500">
+          <p className="text-lg font-medium">No transactions found</p>
+          <p className="text-sm">
+            Try adjusting filters or add a new transaction
+          </p>
+        </div>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-left">
