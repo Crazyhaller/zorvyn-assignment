@@ -1,39 +1,44 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import transactionsReducer from '../features/transactions/transactionsSlice'
 import roleReducer from '../features/role/roleSlice'
 
+const rootReducer = combineReducers({
+  transactions: transactionsReducer,
+  role: roleReducer,
+})
+
+type PersistedState = ReturnType<typeof rootReducer>
+
 // ✅ Load from localStorage
-const loadState = () => {
+const loadState = (): Partial<PersistedState> | undefined => {
+  if (typeof window === 'undefined') return undefined
+
   try {
-    const serialized = localStorage.getItem('financeState')
+    const serialized = window.localStorage.getItem('financeState')
     if (!serialized) return undefined
-    return JSON.parse(serialized)
+    return JSON.parse(serialized) as Partial<PersistedState>
   } catch {
     return undefined
   }
 }
 
 // ✅ Save to localStorage
-const saveState = (state: any) => {
+const saveState = (state: PersistedState) => {
+  if (typeof window === 'undefined') return
+
   try {
-    localStorage.setItem('financeState', JSON.stringify(state))
+    window.localStorage.setItem('financeState', JSON.stringify(state))
   } catch {}
 }
 
 export const store = configureStore({
-  reducer: {
-    transactions: transactionsReducer,
-    role: roleReducer,
-  },
+  reducer: rootReducer,
   preloadedState: loadState(),
 })
 
 // persist on change
 store.subscribe(() => {
-  saveState({
-    transactions: store.getState().transactions,
-    role: store.getState().role,
-  })
+  saveState(store.getState())
 })
 
 export type RootState = ReturnType<typeof store.getState>

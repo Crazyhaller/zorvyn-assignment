@@ -90,9 +90,7 @@ const ExpensePieChart = () => {
                 ))}
               </Pie>
               <Tooltip
-                formatter={(value: number | string) =>
-                  formatCurrency(Number(value))
-                }
+                formatter={(value) => formatCurrency(Number(value))}
                 contentStyle={{
                   borderRadius: '20px',
                   border: '1px solid rgba(148, 163, 184, 0.22)',

@@ -130,9 +130,7 @@ const BalanceChart = () => {
             />
             <Tooltip
               cursor={{ stroke: '#0ea5e9', strokeOpacity: 0.18, strokeWidth: 10 }}
-              formatter={(value: number | string) =>
-                formatCurrency(Number(value))
-              }
+              formatter={(value) => formatCurrency(Number(value))}
               labelFormatter={(label) => formatLongDate(String(label))}
               contentStyle={{
                 borderRadius: '20px',

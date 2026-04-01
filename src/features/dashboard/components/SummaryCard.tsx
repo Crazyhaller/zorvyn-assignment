@@ -11,23 +11,29 @@ const SummaryCards = () => {
   )
 
   const income = transactions
-    .filter((t) => t.type === 'income')
-    .reduce((acc, t) => acc + t.amount, 0)
+    .filter((transaction) => transaction.type === 'income')
+    .reduce((sum, transaction) => sum + transaction.amount, 0)
 
   const expenses = transactions
-    .filter((t) => t.type === 'expense')
-    .reduce((acc, t) => acc + t.amount, 0)
+    .filter((transaction) => transaction.type === 'expense')
+    .reduce((sum, transaction) => sum + transaction.amount, 0)
 
   const balance = income - expenses
-  const incomeEntries = transactions.filter((t) => t.type === 'income').length
-  const expenseEntries = transactions.filter((t) => t.type === 'expense').length
+  const incomeEntries = transactions.filter(
+    (transaction) => transaction.type === 'income',
+  ).length
+  const expenseEntries = transactions.filter(
+    (transaction) => transaction.type === 'expense',
+  ).length
   const averageTransaction =
     transactions.length > 0
       ? transactions.reduce((sum, transaction) => sum + transaction.amount, 0) /
         transactions.length
       : 0
   const savingsRate = income > 0 ? balance / income : 0
-  const categories = new Set(transactions.map((transaction) => transaction.category))
+  const categories = new Set(
+    transactions.map((transaction) => transaction.category),
+  )
 
   const showcaseCards = [
     {
@@ -67,24 +73,6 @@ const SummaryCards = () => {
     },
   ]
 
-  const cards = [
-    {
-      title: 'Total Balance',
-      value: balance,
-      color: 'bg-blue-500',
-    },
-    {
-      title: 'Income',
-      value: income,
-      color: 'bg-green-500',
-    },
-    {
-      title: 'Expenses',
-      value: expenses,
-      color: 'bg-red-500',
-    },
-  ]
-
   return (
     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {showcaseCards.map((card, index) => (
@@ -118,22 +106,6 @@ const SummaryCards = () => {
             <p className="text-sm text-white/70">{card.detail}</p>
           </div>
         </motion.div>
-      ))}
-    </div>
-  )
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {cards.map((card) => (
-        <div
-          key={card.title}
-          className={`p-5 rounded-2xl text-white shadow-md  ${card.color}`}
-        >
-          <h2 className="text-sm opacity-80">{card.title}</h2>
-          <p className="text-2xl font-semibold mt-2">
-            ₹ {card.value.toLocaleString()}
-          </p>
-        </div>
       ))}
     </div>
   )
