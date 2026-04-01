@@ -149,10 +149,10 @@ Handled using **Redux Toolkit**:
 
 ```bash
 # Clone repository
-git clone <your-repo-url>
+git clone https://github.com/Crazyhaller/zorvyn-assignment
 
 # Navigate to project
-cd finance-dashboard
+cd zorvyn-assignment
 
 # Install dependencies
 npm install
